@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<DOCTYPE html>
+    <html lang="cs">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+        <meta name="description" content="Web Mojí pojišťovny, domova kvalitních životních a úrazových pojistek." />
+        <meta name="author" content="Jan Mareš" />
+        <title>@ViewData["Title"] - Moje Pojišťovna</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        @await RenderSectionAsync("CSS", required: false)
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">Moje Pojišťovna</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">Hlavní stránka</a></li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item"><a class="nav-link" href="#!">Vítej @User.Identity?.Name!</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Login">Přihlášení</a></li>
+                        }
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="MyInsurance">Moje pojistky</a></li>
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="AboutUs">O nás</a></li>
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="Contacts">Kontakty</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Insurances" asp-action="Index">Správa pojistek</a></li>
+                                    <li><a class="dropdown-item" asp-controller="InsuredEvents" asp-action="Index">Pojistné události</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Clients" asp-action="Index">Správa osob</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Odhlásit</a></li>
+                                }
+                                else
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Register">Registrace</a></li>
+                                }
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        @RenderBody()
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2024 - <strong>Moje Pojišťovna</strong> jako projekt pro <a href="https://itnetwork.cz">itnetwork.cz</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>

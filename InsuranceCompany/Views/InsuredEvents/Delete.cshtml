@@ -1,0 +1,42 @@
+﻿@model InsuranceCompany.Models.InsuredEvent
+
+@{
+    ViewData["Title"] = "Vymazání události";
+}
+
+<section class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-center my-5">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Vymazání pojistky</h1>
+                    <p class="lead text-white-50 mb-4">Opravdu si přejete ji smazat?</p>
+                    <div class="text-white">
+                        <hr />
+                        <dl class="row">
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Description)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Description)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.State)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.State)
+                            </dd>
+                        </dl>
+                    </div>
+                    <hr />
+                    <form class="d-grid" asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="submit" value="Smaž" class="btn btn-danger btn-lg" />
+                        <hr />
+                        <a href="#" class="btn btn-outline-light btn-lg px-4" onclick="window.history.go(-1); return false;">Zpět</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<InsuranceCompany.Models.InsuredEvent>
+
+@{
+    ViewData["Title"] = "Správa Pojistných Událostí";
+}
+
+<section class="bg-dark py-5 border-bottom text-white">
+    <div class="container px-5 my-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bolder">Správa pojistných událostí</h2>
+        </div>
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+            <a class="btn btn-outline-light btn-lg px-4" asp-controller="Insurances" asp-action="Index">Správa pojištění</a>
+            <a class="btn btn-outline-light btn-lg px-4" asp-controller="Clients" asp-action="Index">Správa osob</a>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table table-responsive table-hover table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Insurance.Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Insurance.InsuredPerson.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.State)
+                    </th>
+                    <th class="text-center">
+                        Akce
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="table-light">
+                @foreach (var item in Model) 
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Insurance.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Client.FirstName) @Html.DisplayFor(modelItem => item.Client.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.State)
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

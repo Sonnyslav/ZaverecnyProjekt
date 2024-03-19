@@ -1,0 +1,85 @@
+﻿@model InsuranceCompany.Models.Client
+
+@{
+    ViewData["Title"] = "Upravit osobu";
+}
+
+<section class="bg-dark py-5">
+    <div class="container px-5 my-5 px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <form class="d-flex flex-column gap-4" id="contactForm" asp-action="Edit">
+                    <div class="form-floating mb-3">
+                        <input asp-for="FirstName" class="form-control" type="text" placeholder="Křestní jméno" />
+                        <label asp-for="FirstName"></label>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="LastName" class="form-control" type="text" placeholder="Příjmení" />
+                        <label asp-for="LastName"></label>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="BirthNumber" class="form-control" type="text" placeholder="YYMMDD/9999" />
+                        <label asp-for="BirthNumber"></label>
+                        <span asp-validation-for="BirthNumber" class="text-danger"></span>
+                        @if (ViewBag.BirthNumberError != null)
+                        {
+                            <p class="text-danger m-0">@ViewBag.BirthNumberError</p>
+                        }
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Street" class="form-control" type="text" placeholder="Ulice" />
+                        <label asp-for="Street"></label>
+                        <span asp-validation-for="Street" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="HouseNumber" class="form-control" type="number" placeholder="00" />
+                        <label asp-for="HouseNumber"></label>
+                        <span asp-validation-for="HouseNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="City" class="form-control" type="text" placeholder="Město" />
+                        <label asp-for="City"></label>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="PostCode" class="form-control" type="number" placeholder="000 00" />
+                        <label asp-for="PostCode"></label>
+                        <span asp-validation-for="PostCode" class="text-danger"></span>
+                        @if (ViewBag.PostCodeError != null)
+                        {
+                            <p class="text-danger m-0">@ViewBag.PostCodeError</p>
+                        }
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select asp-for="Country" class="form-control" asp-items="@Html.GetEnumSelectList<Client.Countries>()"></select>
+                        <label asp-for="Country"></label>
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Phone" class="form-control" type="number" placeholder="000 000 000" />
+                        <label asp-for="Phone"></label>
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                        @if (ViewBag.PhoneNumberError != null)
+                        {
+                            <p class="text-danger m-0">@ViewBag.PhoneNumberError</p>
+                        }
+                    </div>
+                    <div class="d-grid">
+                        <input type="submit" value="Odeslat" class="btn btn-primary btn-lg" />
+                    </div>
+                    <div class="d-grid">
+                        <a href="#" class="btn btn-outline-light btn-lg px-4" onclick="window.history.go(-1); return false;">Zpět</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

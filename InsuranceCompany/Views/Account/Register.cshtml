@@ -1,0 +1,47 @@
+﻿@model InsuranceCompany.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Registrace";
+}
+
+<section class="bg-dark py-5">
+    <div class="container px-5 my-5 px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <form class="d-flex flex-column gap-4" id="contactForm" asp-route-returnUrl="@ViewData[" ReturnUrl"]">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" asp-for="Email" type="email" placeholder="email@email.cz" />
+                        <label asp-for="Email"></label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" asp-for="BirthNumber" type="text" placeholder="YYMMDD/XXXX" />
+                        <label asp-for="BirthNumber"></label>
+                        <span asp-validation-for="BirthNumber" class="text-danger"></span>
+                        @if (ViewBag.Error != null)
+                        {
+                            <p class="text-danger m-0">@ViewBag.Error</p>
+                        }
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" asp-for="Password" type="password" placeholder="Vaše heslo..." />
+                        <label asp-for="Password"></label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" asp-for="ConfirmPassword" type="password" placeholder="Vaše heslo..." />
+                        <label asp-for="ConfirmPassword"></label>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="d-grid"><button class="btn btn-primary btn-lg" type="submit">Zaregistrovat</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

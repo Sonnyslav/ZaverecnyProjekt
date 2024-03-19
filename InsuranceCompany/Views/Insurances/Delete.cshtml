@@ -1,0 +1,80 @@
+﻿@model InsuranceCompany.Models.Insurance
+
+@{
+    ViewData["Title"] = "Vymazání pojištění";
+}
+
+<section class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-center my-5">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Vymazání pojistky</h1>
+                    <p class="lead text-white-50 mb-4">Opravdu si přejete ji smazat?</p>
+                    <div class="text-white">
+                        <hr />
+                        <dl class="row">
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Type)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Type)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.InsuredPerson)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.InsuredPerson.Id) |
+                                @Html.DisplayFor(model => model.InsuredPerson.FirstName) @Html.DisplayFor(model => model.InsuredPerson.LastName) |
+                                <a asp-controller="People" asp-action="Details" asp-route-id="@Model?.InsuredPersonId">Detail pojištěnce</a>
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Insurer)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Insurer.Id) |
+                                @Html.DisplayFor(model => model.Insurer.FirstName) @Html.DisplayFor(model => model.Insurer.LastName) |
+                                <a asp-controller="People" asp-action="Details" asp-route-id="@Model?.InsurerId">Detail pojistitele</a>
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.InsuredAmount)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.InsuredAmount)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Instalment)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Instalment)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.InsuranceStartDate)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.InsuranceStartDate)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.InsuranceEndDate)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.InsuranceEndDate)
+                            </dd>
+                        </dl>
+                    </div>
+                    <hr />
+                    <form class="d-grid" asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="submit" value="Smaž" class="btn btn-danger btn-lg" />
+                        <hr />
+                        <a href="#" class="btn btn-outline-light btn-lg px-4" onclick="window.history.go(-1); return false;">Zpět</a>
+                    </form>
+                    @if (ViewBag.Error != null)
+                    {
+                        <p class="text-danger m-0">@ViewBag.Error</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

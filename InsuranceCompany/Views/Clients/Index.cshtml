@@ -1,0 +1,107 @@
+﻿@model IEnumerable<InsuranceCompany.Models.Client>
+
+@{
+    ViewData["Title"] = "Správa osob";
+}
+
+<section class="bg-light py-5 border-bottom bg-dark text-white">
+    <div class="container px-5 my-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bolder">Správa osob</h2>
+        </div>
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+            <a class="btn btn-outline-light btn-lg px-4" asp-action="Create">Přidat osobu</a>
+            <a class="btn btn-outline-light btn-lg px-4" asp-controller="Insurances" asp-action="Index">Správa pojištění</a>
+            <a class="btn btn-outline-light btn-lg px-4" asp-controller="InsuredEvents" asp-action="Index">Pojistné události</a>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table table-responsive table-hover table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BirthNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sex)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Age)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Street)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HouseNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.City)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PostCode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </th>
+                    <th class="text-center">
+                        Akce
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="table-light">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BirthNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sex)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Age)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Street)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HouseNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PostCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Country)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.Id">Uprav</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Detaily</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Smaž</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Domovská stránka";
+}
+
+<header class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-center my-5">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Vítejte na webu <br /> Mojí Pojišťovny</h1>
+                    <p class="lead text-white-50 mb-4">Návod k použití aplikace najdete níže.</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Začínáme</a>
+                        <a class="btn btn-outline-light btn-lg px-4" asp-controller="Account" asp-action="Login">Přihlášení</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="py-5 border-bottom" id="features">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                <h2 class="h4 fw-bolder">Administrátorský přístup</h2>
+                <p>Pro vyzkoušení administrátorských operací (tvorba, editace a výmaz všech pojistek i osob) využijte administrátorský účet:</p>
+                <p class="fw-bold">
+                    admin@pojistovna.cz<br />
+                    Heslo1234+
+                </p>
+            </div>
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                <h2 class="h4 fw-bolder">Nepovolený přístup</h2>
+                <p>Pokud je administrátor přihlášen při prvním spuštění automaticky, může být potřeba se nejdřív Odhlásit a poté znovu Přihlásit.</p>
+            </div>
+            <div class="col-lg-4">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                <h2 class="h4 fw-bolder">Použití aplikace</h2>
+                <p>V případě tvorby nových uživatelů - pojistky a osoby se párují pomocí rodného čísla. Pokud není v databázi žádný klient, není možné založit pojištění.</p>
+            </div>
+        </div>
+    </div>
+</section>

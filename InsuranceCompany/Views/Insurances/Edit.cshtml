@@ -1,0 +1,65 @@
+﻿@model InsuranceCompany.Models.Insurance
+
+@{
+    ViewData["Title"] = "Úprava pojištění";
+}
+
+<section class="bg-dark py-5">
+    <div class="container px-5 my-5 px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <form class="d-flex flex-column gap-4" id="contactForm" asp-action="Edit">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Type" asp-items="@Html.GetEnumSelectList<Insurance.InsuranceType>()"></select>
+                        <label asp-for="Type"></label>
+                        <span asp-validation-for="Type" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="InsuredPersonId" class="form-control" asp-items="ViewBag.InsuredPersonId"></select>
+                        <label asp-for="InsuredPersonId">Rodné číslo pojištěnce</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="InsurerId" asp-items="ViewBag.InsurerId"></select>
+                        <label asp-for="InsurerId">Rodné číslo pojistitele</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" asp-for="InsuredAmount" type="number" placeholder="100000" />
+                        <label asp-for="InsuredAmount"></label>
+                        <span asp-validation-for="InsuredAmount" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" asp-for="Instalment" type="number" placeholder="1000" />
+                        <label asp-for="Instalment"></label>
+                        <span asp-validation-for="Instalment" class="text-danger"></span>
+                        @if (ViewBag.Error != null)
+                        {
+                            <p class="text-danger m-0">@ViewBag.Error</p>
+                        }
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" asp-for="InsuranceStartDate" />
+                        <label asp-for="InsuranceStartDate"></label>
+                        <span asp-validation-for="InsuranceStartDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" asp-for="InsuranceEndDate" />
+                        <label asp-for="InsuranceEndDate"></label>
+                        <span asp-validation-for="InsuranceEndDate" class="text-danger"></span>
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" type="submit">Odeslat</button>
+                    </div>
+                    <div class="d-grid">
+                        <a href="#" class="btn btn-outline-light btn-lg px-4" onclick="window.history.go(-1); return false;">Zpět</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

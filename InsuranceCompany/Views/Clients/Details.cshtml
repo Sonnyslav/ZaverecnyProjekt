@@ -1,0 +1,166 @@
+﻿@model InsuranceCompany.ViewModels.PersonDetailsViewModel
+
+@{
+    ViewData["Title"] = "Detail osoby";
+}
+
+<section class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-lg-center">
+            <div class="col-lg-6">
+                <div class="text-center my-5">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Detaily Osoby</h1>
+                    <div class="text-white">
+                        <hr />
+                        <dl class="row">
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Client.FirstName)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Client.FirstName)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Client.LastName)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Client.LastName)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Client.BirthNumber)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Client.BirthNumber)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Client.Sex)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Client.Sex)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Client.Age)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Client.Age)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Client.Street)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Client.Street)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Client.HouseNumber)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Client.HouseNumber)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Client.City)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Client.City)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Client.PostCode)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Client.PostCode)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Client.Country)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Client.Country)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Client.Phone)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Client.Phone)
+                            </dd>
+                        </dl>
+                    </div>
+                    <hr />
+                    <div class="d-grid">
+                        <a class="btn btn-primary btn-lg" asp-action="Edit" asp-route-id="@Model?.Client.Id">Upravit</a>
+                    </div>
+                    <hr />
+                    <div class="d-grid">
+                        <a href="#" class="btn btn-outline-light btn-lg px-4" onclick="window.history.go(-1); return false;">Zpět</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-light py-3">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="fw-bolder">Pojistné smlouvy</h2>
+        </div>
+        <table class="table table-responsive table-hover table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InsuranceContracts[0].Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InsuranceContracts[0].InsuredPerson)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InsuranceContracts[0].Insurer)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InsuranceContracts[0].InsuredAmount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InsuranceContracts[0].Instalment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InsuranceContracts[0].InsuranceStartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InsuranceContracts[0].InsuranceEndDate)
+                    </th>
+                    <th class="text-center">
+                        Akce
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.InsuranceContracts)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InsuredPerson.FirstName) @Html.DisplayFor(modelItem => item.InsuredPerson.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Insurer.FirstName) @Html.DisplayFor(modelItem => item.Insurer.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InsuredAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Instalment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InsuranceStartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InsuranceEndDate)
+                        </td>
+                        <td class="text-center">
+                            <a asp-controller="Insurances" asp-action="Edit" asp-route-id="@item.Id">Uprav</a> |
+                            <a asp-controller="Insurances" asp-action="Details" asp-route-id="@item.Id">Detaily</a> |
+                            <a asp-controller="Insurances" asp-action="Delete" asp-route-id="@item.Id">Smaž</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

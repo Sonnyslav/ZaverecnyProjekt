@@ -1,0 +1,45 @@
+﻿@model InsuranceCompany.Models.InsuredEvent
+
+@{
+    ViewData["Title"] = "Upravit událost";
+}
+
+<section class="bg-dark py-5">
+    <div class="container px-5 my-5 px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <form class="d-flex flex-column gap-4" id="contactForm" asp-action="Edit">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" asp-for="Description" type="text" />
+                        <label asp-for="Description"></label>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="State" asp-items="@Html.GetEnumSelectList<InsuredEvent.EventState>()"></select>
+                        <label asp-for="State"></label>
+                    </div>
+                    <div class="d-grid">
+                        <input type="submit" value="Odeslat" class="btn btn-primary btn-lg" />
+                    </div>
+                    <div class="d-grid">
+                        <a href="#" class="btn btn-outline-light btn-lg px-4" onclick="window.history.go(-1); return false;">Zpět</a>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" asp-for="InsuranceId" type="text" />
+                        <label asp-for="InsuranceId"></label>
+                        <span asp-validation-for="InsuranceId" class="text-danger" hidden></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" asp-for="ClientId" type="text" hidden />
+                        <label asp-for="ClientId"></label>
+                        <span asp-validation-for="ClientId" class="text-danger"></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

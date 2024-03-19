@@ -1,0 +1,100 @@
+﻿@model InsuranceCompany.Models.Client
+
+@{
+    ViewData["Title"] = "Vymazat osobu";
+}
+
+<section class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-lg-center">
+            <div class="col-lg-6">
+                <div class="text-center my-5">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Vymazat Osobu</h1>
+                    <div class="text-white">
+                        <hr />
+                        <dl class="row">
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.FirstName)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.FirstName)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.LastName)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.LastName)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.BirthNumber)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.BirthNumber)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Sex)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Sex)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Age)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Age)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Street)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Street)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.HouseNumber)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.HouseNumber)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.City)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.City)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.PostCode)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.PostCode)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Country)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Country)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Phone)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Phone)
+                            </dd>
+                        </dl>
+                        <form class="d-grid" asp-action="Delete">
+                            <input type="hidden" asp-for="Id" />
+                            <input type="submit" value="Smaž" class="btn btn-danger btn-lg" />
+                            <hr />
+                            <a href="#" class="btn btn-outline-light btn-lg px-4" onclick="window.history.go(-1); return false;">Zpět</a>
+                            <div>
+                                @if (ViewBag.Error != null)
+                                {
+                                    <p style="font-size: 1em; color: red;">@ViewBag.Error</p>
+                                }
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,220 @@
+﻿@model InsuranceCompany.ViewModels.PersonDetailsViewModel
+
+@{
+    ViewData["Title"] = "Detail osoby";
+}
+
+@if (ViewBag.NotAUser != null)
+{
+    <section class="bg-dark">
+        <div class="container">
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-6">
+                    <div class="text-center mb-5 p-5 pb-0">
+                        <h2 class="fw-bolder text-white">Ups, nic tu nemáte.</h2>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-body p-4">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
+                                <div class="ms-4">
+                                    <p class="mb-1">@ViewBag.NotAUser</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <section class="py-5 border-bottom bg-dark text-white" id="features">
+        <h1 class="text-center fw-bolder">Moje údaje</h1>
+        <div class="container px-5 my-5">
+            <div class="row gx-5">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h2 class="h4 fw-bolder">Osobní údaje</h2>
+                    <dl class="row">
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Client.FirstName)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Client.FirstName)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Client.LastName)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Client.LastName)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Client.BirthNumber)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Client.BirthNumber)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Client.Sex)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Client.Sex)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Client.Age)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Client.Age)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Client.Street)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Client.Street)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Client.HouseNumber)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Client.HouseNumber)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Client.City)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Client.City)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Client.PostCode)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Client.PostCode)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Client.Country)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Client.Country)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Client.Phone)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Client.Phone)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-lg-4">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                    <h2 class="h4 fw-bolder">Závazky</h2>
+                    <dl class="row">
+                        <dt class="col-sm-4 border-bottom">
+                            @Html.DisplayNameFor(model => model.InstalmentsSum)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.InstalmentsSum)
+                        </dd>
+                        @foreach (var item in Model.InsurerContracts)
+                        {
+                            <dt class="col-sm-4">
+                                @Html.DisplayFor(modelItem => item.InsuredPerson.LastName) @Html.DisplayFor(modelItem => item.InsuredPerson.FirstName)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => item.Instalment)
+                            </dd>
+                        }
+                    </dl>
+                </div>
+                <div class="col-lg-4">
+                    <h2 class="h4 fw-bolder">Pojistné události</h2>
+                    <table class="text-white table table-responsive table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.InsuredEvents[0].Description)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.InsuredEvents[0].State)
+                                </th>
+                            </tr>
+                            @foreach (var item in Model.InsuredEvents)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(itemModel => item.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(itemModel => item.State)
+                                </td>
+                            </tr>
+                            }
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-light py-3">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="fw-bolder">Moje Pojistky</h2>
+            </div>
+            <table class="table table-responsive table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InsuranceContracts[0].Type)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InsuranceContracts[0].InsuredPerson)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InsuranceContracts[0].Insurer)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InsuranceContracts[0].InsuredAmount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InsuranceContracts[0].Instalment)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InsuranceContracts[0].InsuranceStartDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InsuranceContracts[0].InsuranceEndDate)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.InsuranceContracts)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InsuredPerson.FirstName) @Html.DisplayFor(modelItem => item.InsuredPerson.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Insurer.FirstName) @Html.DisplayFor(modelItem => item.Insurer.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InsuredAmount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Instalment)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InsuranceStartDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InsuranceEndDate)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+}
